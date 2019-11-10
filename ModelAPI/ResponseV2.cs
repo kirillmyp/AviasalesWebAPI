@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace aviasalesWebAPI.ModelAPI
+namespace AviasalesWebAPI.ModelAPI
 {
     public class ResponseV2
     {

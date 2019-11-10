@@ -4,17 +4,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using aviasalesWebAPI.ModelAPI;
+using AviasalesWebAPI.Configs;
+using AviasalesWebAPI.ModelAPI;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
-namespace aviasalesWebAPI.Controllers
+namespace AviasalesWebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class AviaController : ControllerBase
     {
+        public readonly AppsettingOption appsettingOption;
+        public AviaController(IOptionsMonitor<AppsettingOption> _appsettingOption)
+        {
+            appsettingOption = _appsettingOption?.CurrentValue;
+        }
+
         [HttpGet("Matrix")]
         public async Task<IEnumerable<ticketsV2>> GetMounthMatrixAsync()
         {
@@ -26,7 +33,7 @@ namespace aviasalesWebAPI.Controllers
             var httpClient = new HttpClient(handler);
 
             var fullUrl = string.Empty;
-            httpClient.DefaultRequestHeaders.Add("X-Access-Token", "c7b7c28b72c1813ce7f94798ef15fcd9");
+            httpClient.DefaultRequestHeaders.Add("X-Access-Token", appsettingOption.Token);
             httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate");
 
             string CityFrom = "LED";
@@ -62,14 +69,14 @@ namespace aviasalesWebAPI.Controllers
             var httpClient = new HttpClient(handler);
 
             var fullUrl = string.Empty;
-            httpClient.DefaultRequestHeaders.Add("X-Access-Token", "c7b7c28b72c1813ce7f94798ef15fcd9");
+            httpClient.DefaultRequestHeaders.Add("X-Access-Token", appsettingOption.Token);
             httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate");
 
-            string CityFrom = "LED";
-            string CityTo = "CAG";
+            string CityFrom = "BAK";
+            string CityTo = "LED";
             fullUrl = "http://api.travelpayouts.com/v2/prices/latest";
             fullUrl += "?";
-            fullUrl += @$"currency=rus&period_type=month&beginning_of_period=2020-04-01&limit=100&show_to_affiliates=false&sorting=price&one_way=false&trip_class=0&origin={CityFrom}&destination={CityTo}";
+            fullUrl += @$"currency=rus&period_type=month&beginning_of_period=2020-02-01&limit=100&show_to_affiliates=false&sorting=price&one_way=false&trip_class=0&origin={CityFrom}&destination={CityTo}";
             fullUrl += "&sorting=price";
 
             var request = await httpClient.GetAsync(fullUrl);
@@ -98,7 +105,7 @@ namespace aviasalesWebAPI.Controllers
             var httpClient = new HttpClient(handler);
 
             var fullUrl = string.Empty;
-            httpClient.DefaultRequestHeaders.Add("X-Access-Token", "c7b7c28b72c1813ce7f94798ef15fcd9");
+            httpClient.DefaultRequestHeaders.Add("X-Access-Token", appsettingOption.Token);
             httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate");
 
             string CityFrom = "LED";
@@ -134,7 +141,7 @@ namespace aviasalesWebAPI.Controllers
             var httpClient = new HttpClient(handler);
 
             var fullUrl = string.Empty;
-            httpClient.DefaultRequestHeaders.Add("X-Access-Token", "c7b7c28b72c1813ce7f94798ef15fcd9");
+            httpClient.DefaultRequestHeaders.Add("X-Access-Token", appsettingOption.Token);
             httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate");
 
             string CityFrom = "LED";

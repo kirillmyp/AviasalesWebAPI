@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace aviasalesWebAPI.Context
+namespace AviasalesWebAPI.Context
 {
     public class TokenAPI : HttpContent
     {

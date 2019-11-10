@@ -1,4 +1,4 @@
-﻿namespace aviasalesWebAPI.ModelAPI
+﻿namespace AviasalesWebAPI.ModelAPI
 {
     public class ticketsV2
     {

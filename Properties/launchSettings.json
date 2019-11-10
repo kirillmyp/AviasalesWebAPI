@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "aviasalesWebAPI": {
+    "AviasalesWebAPI": {
       "commandName": "Project",
       "launchUrl": "avia",
       "environmentVariables": {
